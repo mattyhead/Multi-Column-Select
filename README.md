@@ -50,6 +50,24 @@ Wrap the select control with a div and give that container an ID or class
 
 <h2>CSS</h2>
 
+This is the HTML that the plugin produces (classed/ID's can be changed in the options):
+
+```
+<div class="menucontainer">
+	<a id="msc-1" data="Audi" class="menuitem active">Audi</a>
+	<a id="msc-2" data="Bugatti" class="menuitem">Bugatti</a>
+	<a id="msc-3" data="Chrysler" class="menuitem active">Chrysler</a>
+	<a id="msc-4" data="Daihatsu" class="menuitem">Daihatsu</a>
+	<a id="msc-5" data="Ford" class="menuitem">Ford</a>
+	<a id="msc-6" data="GM" class="menuitem active">General Motors</a>
+	<a id="msc-7" data="Honda" class="menuitem">Honda</a>
+	<a id="msc-8" data="Infiniti" class="menuitem">Infiniti</a>
+</div>
+
+```
+So feel free to style it however you like. 
+
+The only styles to worry about are :
 
 ```
 .openmenubutton{
@@ -62,6 +80,9 @@ Wrap the select control with a div and give that container an ID or class
 
 .menuitem{
 }
+
+.hidden  // to hide the original select box
+
 ```
 
 
