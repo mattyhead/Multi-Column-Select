@@ -16,23 +16,28 @@
             openmenutext : 'Choose An Option',
             menucontainer : 'menucontainer',
             menuitem : 'menuitem',
-			idprefix : 'msc-',
-			showitemtext : true,
+	    idprefix : 'msc-',
+            showitemtext : true,
             hideclass : 'hidden',
             openclass : 'open',
             clearclass : 'clear',
+            multiple: false,
             duration : 200
         }, options );
 
         $selector = this.selector;
-            
+        
+		var args = [];
+		
+		    
         //Plugin Vars
         $control = $($selector+' select');
         $selectoptions = $($selector+' select option');
         $optioncount = 0;   $optionvals = [];   $optionids = [];
             
         //Hide the original select box
-        $control.addClass(settings.menuclass).addClass(settings.hideclass);
+        $control.addClass(settings.menuclass)
+		//.addClass(settings.hideclass);
         
          //generate menu button and the container below the orginal select box.
         //Adds a clear class so content is pushed down when animated.
@@ -46,18 +51,43 @@
           
 		  var settext = '';
 		  if (settings.showitemtext == true) settext = $(this).text();
-		  
 		  $('.'+settings.menucontainer).append("<a class='"+ settings.menuitem+"' data='"+ $(this).attr('value') +"' id='"+settings.idprefix+$optioncount+"'>" + settext + "</a>");
         });
 
         // check for click event
         // on option click
         $($selector).delegate('a.'+ settings.menuitem, 'click', function(e){ 
-           $($selector).find('select').val($(this).attr('data')); //bind form value
-            $('a.'+ settings.menuitem).removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();        
-        });
+        $itemdata = $(this).attr('data');
+                        
+	   //single selection
+	   if (settings.multiple == false) {
+	   
+                    $($selector).find('select').val($itemdata); //bind form value
+                    $('a.'+ settings.menuitem).removeClass('active'); //remove all active states
+                    $(this).addClass('active'); //add new active state to clicked item
+            
+            }
+            
+            if (settings.multiple == true) {
+                 
+                if ( $(this).hasClass('active')){		
+			//already selected, unselect it
+			$(this).removeClass('active');
+                        var removeItem = $itemdata; //ID to be removed
+                        args.splice( $.inArray(removeItem,args) ,1 ); //Look up at the ID and remove it	                       
+		}else{                    
+			$(this).addClass('active');
+			args.push($itemdata); 		
+            	};
+		
+		//Update the values on the selectbox
+                $($selector).find('select').val(args);
+		
+            };
+            e.preventDefault(); 
+    });
+		
+		
 
         //open close the menu
         $($selector).delegate('a.'+settings.openmenu, 'click', function(e){
