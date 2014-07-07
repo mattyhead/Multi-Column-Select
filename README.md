@@ -75,10 +75,16 @@ $(".selectcontrol").MultiColumnSelect({
             openmenutext : 'Choose',   // Text for toggle menu button
             menucontainer : 'menucontainer',     // Container Class
             menuitem : 'menuitem',               // Item Class
+            idprefix : 'msc-',                  //Id Prefix of items eg msc-1,msc-2....
+			showitemtext : true                 //Hide/Show text from options (if using images)
             hideclass : 'hidden',                // hide Class
             openclass : 'open',                  // Open Class
             clearclass : 'clear',                // Clear Class
             duration : 200                       // Animation Duration
+            
+           
+            
+            
             
             //TODO
             
