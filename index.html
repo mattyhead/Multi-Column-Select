@@ -33,7 +33,20 @@
             clearclass : 'clear',                // Clear Class
             duration : 200                       // Animation Duration
 
-});
+        });
+        
+        $('.selectcontrolmulti').MultiColumnSelect({
+            menuclass : 'columnselect', 
+            openmenu : 'openmenubutton',
+            openmenutext : 'Choose...',
+            menucontainer : 'menucontainer',
+            menuitem : 'menuitem',
+            hideclass : 'hidden',
+            openclass : 'open',
+            clearclass : 'clear',
+	          multiple: true,
+            duration : 200
+        });
         
       })
     </script>
@@ -80,7 +93,7 @@
 
 <div class="wrapper">
     
-    
+      <h2>Single Selection</h2>
       <h3>Before</h3>  
      
     <form method="GET" action="">
@@ -121,7 +134,43 @@
         <input type="submit" value="Submit" />
 
     </form>
+    
+      <h2>Multi-Selection</h2>
+      <h3>Before</h3>  
+      
+    <form action="" method="GET">
 
+    <div class="selectcontrol">
+          <select name="car" multiple id="sel">
+                <option value="Audi">Audi</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Ford">Ford</option>
+                <option value="GM">General Motors</option>
+                <option value="Honda">Honda</option>
+                <option value="Infiniti">Infiniti</option>
+     </select>
+    </div>
+        <input type="submit" value="Submit" class="btn" />
+    </form>
+    <h3><br>After</h3>
+      <form action="" method="GET">
+
+    <div class="selectcontrolmulti">
+          <select name="car" multiple id="sel">
+                <option value="Audi">Audi</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Ford">Ford</option>
+                <option value="GM">General Motors</option>
+                <option value="Honda">Honda</option>
+                <option value="Infiniti">Infiniti</option>
+     </select>
+    </div>
+        <input type="submit" value="Submit" class="btn" />
+    </form>
 
     </div>
 
