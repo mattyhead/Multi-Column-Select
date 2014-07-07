@@ -16,6 +16,8 @@
             openmenutext : 'Choose An Option',
             menucontainer : 'menucontainer',
             menuitem : 'menuitem',
+			idprefix : 'msc-',
+			showitemtext : true,
             hideclass : 'hidden',
             openclass : 'open',
             clearclass : 'clear',
@@ -34,16 +36,18 @@
         
          //generate menu button and the container below the orginal select box.
         //Adds a clear class so content is pushed down when animated.
-        $($selector).append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a>\n\
-                             <div class='"+settings.clearclass+"'></div>\n\
-                             <div class='"+settings.menucontainer+"'></div>");
+        $($selector).append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a><div class='"+settings.clearclass+"'></div><div class='"+settings.menucontainer+"'></div>");
 
         //get elements in dropdown
         $selectoptions.each(function(e)
         {
           //Push count, value and text
           $optioncount += 1;
-          $('.'+settings.menucontainer).append("<a class='"+ settings.menuitem+"' data='"+ $(this).attr('value') +"'>" + $(this).text() + "</a>");
+          
+		  var settext = '';
+		  if (settings.showitemtext == true) settext = $(this).text();
+		  
+		  $('.'+settings.menucontainer).append("<a class='"+ settings.menuitem+"' data='"+ $(this).attr('value') +"' id='"+settings.idprefix+$optioncount+"'>" + settext + "</a>");
         });
 
         // check for click event
@@ -64,8 +68,7 @@
                     }); 
                 }else{                
                     $(this).addClass(settings.openclass);
-                    $('.'+settings.menucontainer).height(0).show();
-                    // Set height = Totat / Column * Real Height of Block
+                    $('.'+settings.menucontainer).height(0).show();                  
                     $total = Math.round($optioncount / numberofcolumns('.'+settings.menuitem,'.'+settings.menucontainer));
                     $blockheight = trueheight('.'+settings.menuitem); //add the padding
                     
