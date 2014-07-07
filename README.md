@@ -26,7 +26,7 @@ Include js plugin:
 ```
     <form action="test.php" method="GET">
 
-    <div class="selectcontrol">
+    <div id="selectcontrol">
         <select name="car">
                 <option value="Audi">Audi</option>
                 <option value="Bugatti">Bugatti</option>
@@ -46,7 +46,7 @@ Include js plugin:
     </form>
 
 ```
-Wrap the select control with a div and give that container an ID or class
+Wrap the select control with a div and give that container an ID
 
 <h2>CSS</h2>
 
@@ -89,7 +89,7 @@ The only styles to worry about are :
 <h2>Call the plugin</h2>
 
 ```javascript
-$(".selectcontrol").MultiColumnSelect({
+$("#selectcontrol").MultiColumnSelect({
 
             menuclass : 'multicolumnselect',     // class given to control
             openmenu : 'openmenubutton',         // used to toggle menu open/closed
