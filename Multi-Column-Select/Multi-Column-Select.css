@@ -3,9 +3,11 @@
     	width:100%;
         padding:10px;
 	overflow:hidden;
-        background:#222;
+        position: relative; 
         box-sizing: border-box;
         display:none;
+        
+        background:#222;
 }
 
 /*The menu items (options)*/
