@@ -9,6 +9,9 @@
 (function ( $ ) {
         
         $.fn.MultiColumnSelect = function( options ) {
+        $selector = this.selector;
+        var args = [];
+	$optioncount = 0;
         
         var settings = $.extend({
             menuclass : 'columnselect', 
@@ -16,94 +19,88 @@
             openmenutext : 'Choose An Option',
             menucontainer : 'menucontainer',
             menuitem : 'menuitem',
+	    idprefix : 'msc-',
+            showitemtext : true,
             hideclass : 'hidden',
             openclass : 'open',
             clearclass : 'clear',
+            multiple: false,
             duration : 200
         }, options );
 
-        $selector = this.selector;
+        this.append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a><div class='"+settings.menucontainer+"'></div> <div class='clear'></div>");
             
-        //Plugin Vars
-        $control = $($selector+' select');
-        $selectoptions = $($selector+' select option');
-        $optioncount = 0;   $optionvals = [];   $optionids = [];
-            
-        //Hide the original select box
-        $control.addClass(settings.menuclass).addClass(settings.hideclass);
-        
-         //generate menu button and the container below the orginal select box.
-        //Adds a clear class so content is pushed down when animated.
-        $($selector).append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a>\n\
-                             <div class='"+settings.clearclass+"'></div>\n\
-                             <div class='"+settings.menucontainer+"'></div>");
-
         //get elements in dropdown
-        $selectoptions.each(function(e)
+        this.find('select option').each(function(e,v)
         {
           //Push count, value and text
           $optioncount += 1;
-          $('.'+settings.menucontainer).append("<a class='"+ settings.menuitem+"' data='"+ $(this).attr('value') +"'>" + $(this).text() + "</a>");
+                 var settext = '';
+        	 if (settings.showitemtext == true) settext = $(this).text();
+		 $(this).parent().siblings('.'+settings.menucontainer).append("<a class='"+ settings.menuitem+"' data='"+ $(this).attr('value') +"' id='"+settings.idprefix+$optioncount+"'>" + settext + "</a>");
         });
-
+    
         // check for click event
         // on option click
-        $($selector).delegate('a.'+ settings.menuitem, 'click', function(e){ 
-           $($selector).find('select').val($(this).attr('data')); //bind form value
-            $('a.'+ settings.menuitem).removeClass('active');
-            $(this).addClass('active');
-            e.preventDefault();        
+        
+        this.find('.'+settings.menuitem).on('click',function(e){
+            
+            $itemdata = $(this).attr('data');
+            
+            //single selection
+	    if (settings.multiple == false) {
+	            $(this).parent().siblings('select').val($itemdata); //bind form value
+                    $(this).siblings('a.'+ settings.menuitem).removeClass('active'); //remove all active states
+                    $(this).addClass('active'); //add new active state to clicked item
+            }
+            
+            if (settings.multiple == true) {
+                 
+                if ( $(this).hasClass('active')){		
+			//already selected, unselect it
+			$(this).removeClass('active');
+                        var removeItem = $itemdata; //ID to be removed
+                        args.splice( $.inArray(removeItem,args) ,1 ); //Look up at the ID and remove it	                       
+		}else{                    
+			$(this).addClass('active');
+			args.push($itemdata); 
+                        
+            	};
+                $($selector).find('select').val(args);		
+            };
+            e.preventDefault();                        
         });
-
-        //open close the menu
-        $($selector).delegate('a.'+settings.openmenu, 'click', function(e){
+        
+        
+        this.find('.'+settings.openmenu).on('click',function(e){
+        
                 if ($(this).hasClass(settings.openclass)){         
-                    $(this).removeClass(settings.openclass);
-                    $('.'+settings.menucontainer).animate({height:0},settings.duration, function(){
-                        $('.'+settings.menucontainer).hide();
-                    }); 
+                    $(this).removeClass(settings.openclass);                    
+                    $(this).next().slideToggle( "slow", function() {
+                            // Animation complete. :: add callback
+                    });
                 }else{                
                     $(this).addClass(settings.openclass);
-                    $('.'+settings.menucontainer).height(0).show();
-                    // Set height = Totat / Column * Real Height of Block
-                    $total = Math.round($optioncount / numberofcolumns('.'+settings.menuitem,'.'+settings.menucontainer));
-                    $blockheight = trueheight('.'+settings.menuitem); //add the padding
                     
-                    var paddingtop = $('.'+settings.menucontainer).css('padding-top');
-                    var paddingbottom = $('.'+settings.menucontainer).css('padding-top');
-                    paddingtop = parseInt(paddingtop.match(/[0-9]+/g));
-                    paddingbottom = parseInt(paddingbottom.match(/[0-9]+/g));
-                    padding = paddingtop + paddingbottom;
-                    
-                    $newheight = $total * $blockheight + padding;
-             
                     //Set the height of the container
-                    $('.'+settings.menucontainer).animate({height:$newheight},settings.duration);
-
+                    $(this).next().slideToggle( "slow", function() {
+                            // Animation complete.
+                    });
                 };
-                e.preventDefault();            
-            });     
-            return this;
+                e.preventDefault();                    
+        });
+        return this;
         };
-        
-        
-        function trueheight(ele){
-            //Padding/Margin and Borders
-            var addheight = $(ele).outerHeight(true) - $(ele).innerHeight();
-            var height = $(ele).height();              
-            return height + addheight;            
-        }
               
         function numberofcolumns(ele,parent){
             return Math.round(100 / getwidthaspercent(ele,parent));
         };            
         
         function getwidthaspercent(ele,parent){                        
-                     var width = $(ele).width();
-                     var parentWidth = $(parent).width();
+                     var width = ele.width();
+                     var parentWidth = parent.width();
                      var percent = 100*width/parentWidth;
-                   return Math.round(percent);   
+                     return Math.round(percent);   
         };
-        
         
 }( jQuery ));
