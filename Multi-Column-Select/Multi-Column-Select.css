@@ -1,11 +1,18 @@
+html,body{
+    background:#5f7a87;
+    margin:0;
+    padding:0;
+}
+
 /*The container that holds the dropdown items*/
 .menucontainer{
     	width:100%;
 	overflow:hidden;
-        position: relative; 
+        background:#222;
         box-sizing: border-box;
         display:none;
-        background:#222;
+        position: relative;
+        padding:10px;
 }
 
 /*The menu items (options)*/
@@ -21,23 +28,21 @@
 	line-height: 50px;
 	text-align: center;
         border:1px solid #111;
-        position: relative; 
         
 }
 
 .openmenubutton{
-	border: 0;
+    border: 0;
         text-align: left;
-        padding:10px;
+        padding: 0 10px 0 40px;
 	width:100%;
-
+        margin-top:20px;
 }
 
 .openmenubutton.open{
     background:#ffffff;
     color:#111;
 }
-
 .openmenubutton.open:hover{
     background:#00ada9;
     color:#FFF;
@@ -49,13 +54,29 @@
 	border:1px solid #222;
 }
 
+input[type=submit]{
+    border:0;
+    display: block;
+    width:100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #00ada9;
+    color: #FFF;
+    clear:both;
+
+    
+}
 
 .menuitem:hover,
 .openmenubutton:hover{
 background:#00ada9;
 cursor:pointer;
 }
-
+input[type=submit]:hover{
+cursor:pointer;
+background:#293b47;
+}
 
 /*Hide Select Form Control*/
 .hidden{
@@ -73,7 +94,8 @@ cursor:pointer;
 
 
 .wrapper{
-    width:480px;
+    width:580px;
+    padding:20px;
     margin: 0 auto;
     text-align: center;
 }
@@ -128,3 +150,7 @@ h2{
     text-shadow: 0 0 0 #FFF;
 }
 
+input[type=submit]{
+        font-family: 'Ubuntu Condensed', sans-serif;
+        font-size:1em;
+}
