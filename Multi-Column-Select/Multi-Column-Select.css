@@ -1,12 +1,10 @@
 /*The container that holds the dropdown items*/
 .menucontainer{
     	width:100%;
-        padding:10px;
 	overflow:hidden;
         position: relative; 
         box-sizing: border-box;
         display:none;
-        
         background:#222;
 }
 
@@ -74,7 +72,7 @@ cursor:pointer;
 
 
 .wrapper{
-    width:400px;
+    width:480px;
     margin: 0 auto;
     text-align: center;
 }
