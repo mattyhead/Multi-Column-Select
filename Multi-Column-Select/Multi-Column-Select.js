@@ -75,8 +75,11 @@
         this.find('.'+settings.openmenu).on('click',function(e){
         
                 if ($(this).hasClass(settings.openclass)){         
-                    $(this).removeClass(settings.openclass);                    
-                    $(this).next().slideToggle( "slow", function() {
+                    $(this).removeClass(settings.openclass);  
+                    
+                     $(this).next().width($(this).next().width()).slideToggle( "slow", function() {
+                    
+                    
                             // Animation complete. :: add callback
                     });
                 }else{                
