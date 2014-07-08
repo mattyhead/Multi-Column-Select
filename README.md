@@ -99,20 +99,14 @@ $("#selectcontrol").MultiColumnSelect({
             idprefix : 'msc-',                   //Id Prefix of items eg msc-1,msc-2....
 	    showitemtext : true                  //Hide/Show text from options (if using images)
             openclass : 'open',                  // Open Class
-            clearclass : 'clear',                // Clear Class
             duration : 200,                       // Animation Duration
             multiple: false,
-           duration : 200 
-           
-            
-            
+            duration : 200 
+                
+            onOpen : function(){};
+            onClose : function(){};
             
             //TODO
-            
-            onOpenMenu: function(){};
-            onCloseMenu: function(){};
-            on...
-            
             $.MulticolumnSelect.additem('ID','Value');
             $.MulticolumnSelect.additem({{'ID','Value'},{'ID','Value'},{'ID','Value'}});
             $.MulticolumnSelect.removeitem('ID');
