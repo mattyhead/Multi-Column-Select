@@ -93,16 +93,16 @@ $("#selectcontrol").MultiColumnSelect({
 
             menuclass : 'multicolumnselect',     // class given to control
             openmenu : 'openmenubutton',         // used to toggle menu open/closed
-            openmenutext : 'Choose',   // Text for toggle menu button
+            openmenutext : 'Choose...',   		 // Text for toggle menu button
             menucontainer : 'menucontainer',     // Container Class
             menuitem : 'menuitem',               // Item Class
-            idprefix : 'msc-',                  //Id Prefix of items eg msc-1,msc-2....
-			showitemtext : true                 //Hide/Show text from options (if using images)
-            hideclass : 'hidden',                // hide Class
+            idprefix : 'msc-',                   //Id Prefix of items eg msc-1,msc-2....
+	    showitemtext : true                  //Hide/Show text from options (if using images)
             openclass : 'open',                  // Open Class
             clearclass : 'clear',                // Clear Class
-            duration : 200                       // Animation Duration
-            
+            duration : 200,                       // Animation Duration
+            multiple: false,
+           duration : 200 
            
             
             
