@@ -81,7 +81,7 @@
                     
                     
                             // Animation complete. :: add callback
-                    }).animate({"margin-bottom": "toggle"});
+                    });
                 }else{                
                     $(this).addClass(settings.openclass);
                     
