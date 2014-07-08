@@ -25,10 +25,13 @@
             openclass : 'open',
             clearclass : 'clear',
             multiple: false,
-            duration : 200
+            duration : 200,
+            onClose: null,
+            onOpen: null
+            
         }, options );
 
-        this.append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a><div class='"+settings.menucontainer+"'></div> <div class='clear'></div>");
+        this.append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a><div class='"+settings.menucontainer+"'></div> ");
             
         //get elements in dropdown
         this.find('select option').each(function(e,v)
@@ -71,27 +74,50 @@
             e.preventDefault();                        
         });
         
+        getfullwidth($(this).find('.'+settings.menucontainer));
+        
+        //  .width($(this).next().width())
         
         this.find('.'+settings.openmenu).on('click',function(e){
         
                 if ($(this).hasClass(settings.openclass)){         
                     $(this).removeClass(settings.openclass);                    
                     $(this).next().slideToggle( "slow", function() {
-                            // Animation complete. :: add callback
+                            // Animation complete. :: add callback close
+                           $.isFunction( settings.onClose ) && settings.onClose.call( this );
+                            
                     });
                 }else{                
                     $(this).addClass(settings.openclass);
                     
                     //Set the height of the container
                     $(this).next().slideToggle( "slow", function() {
-                            // Animation complete.
-                    });
+                           $.isFunction( settings.onOpen ) && settings.onOpen.call( this );
+                    })
                 };
                 e.preventDefault();                    
         });
         return this;
         };
-              
+        
+        function getfullwidth(ele){
+            
+            basewidth = ele.width();
+            padleft = ele.css('padding-left');
+            padright = ele.css('padding-right');
+            marleft = ele.css('margin-left');
+            marright = ele.css('margin-right');
+            
+            
+                        
+            padleft = parseInt(padleft.match(/[0-9]+/g));
+            padright = parseInt(padright.match(/[0-9]+/g));
+            
+         
+            
+            
+        }
+    
         function numberofcolumns(ele,parent){
             return Math.round(100 / getwidthaspercent(ele,parent));
         };            
