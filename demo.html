@@ -20,7 +20,7 @@
             <h1>Multi-Column-Dropdown</h1>    
         </header>
         
-    <form action="test.php" method="GET">
+    <form action="" method="GET">
 
     <div class="selectcontrol">
           <select name="car">
@@ -55,8 +55,11 @@
             menuitem : 'menuitem',
             hideclass : 'hidden',
             openclass : 'open',
-            clearclass : 'clear',
-            duration : 200
+            duration : 200,
+            showtext : true,
+            
+            onOpen: function(){};
+            onClose: function(){};
         });
      });  
     </script>
