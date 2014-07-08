@@ -1,7 +1,7 @@
 /*The container that holds the dropdown items*/
 .menucontainer{
     	width:100%;
-        padding:0px;
+        padding:10px;
 	overflow:hidden;
         background:#222;
         box-sizing: border-box;
