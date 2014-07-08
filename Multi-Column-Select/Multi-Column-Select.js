@@ -77,11 +77,11 @@
                 if ($(this).hasClass(settings.openclass)){         
                     $(this).removeClass(settings.openclass);  
                     
-                     $(this).next().width($(this).next().width()).slideToggle( "slow", function() {
+                     $(this).next().slideToggle( "slow", function() {
                     
                     
                             // Animation complete. :: add callback
-                    });
+                    }).animate({"margin-bottom": "toggle"});
                 }else{                
                     $(this).addClass(settings.openclass);
                     
