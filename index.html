@@ -21,18 +21,31 @@
       $(document).ready(function () {
         $('#main_content').headsmart();
         
-        $(".selectcontrol").MultiColumnSelect({
-
-            menuclass : 'multicolumnselect',     // class given to control
-            openmenu : 'openmenubutton',         // used to toggle menu open/closed
-            openmenutext : 'Choose',   // Text for toggle menu button
-            menucontainer : 'menucontainer',     // Container Class
-            menuitem : 'menuitem',               // Item Class
-            hideclass : 'hidden',                // hide Class
-            openclass : 'open',                  // Open Class
-            clearclass : 'clear',                // Clear Class
-            duration : 200                       // Animation Duration
-
+         $('#selectcontrol').MultiColumnSelect({
+            menuclass : 'columnselect', 
+            openmenu : 'openmenubutton',
+            openmenutext : 'Choose...',
+            menucontainer : 'menucontainer',
+            menuitem : 'menuitem',
+            hideclass : 'hidden',
+            openclass : 'open',
+            clearclass : 'clear',
+            duration : 200,
+           
+        });
+        
+          $('#selectcontrolm').MultiColumnSelect({
+            menuclass : 'columnselect', 
+            openmenu : 'openmenubutton',
+            openmenutext : 'Choose...',
+            menucontainer : 'menucontainer',
+            menuitem : 'menuitem',
+            hideclass : 'hidden',
+            openclass : 'open',
+            clearclass : 'clear',
+            duration : 200,
+            multiple: true
+           
         });
         
         
