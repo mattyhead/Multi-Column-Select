@@ -1,8 +1,4 @@
-html,body{
-    background:#5f7a87;
-    margin:0;
-    padding:0;
-}
+
 #selectcontrol, #selectcontrolm{
     margin-bottom:10px;
 }
@@ -61,10 +57,7 @@ html,body{
 background:#00ada9;
 cursor:pointer;
 }
-input[type=submit]:hover{
-cursor:pointer;
-background:#293b47;
-}
+
 
 /*Hide Select Form Control*/
 .hidden{
