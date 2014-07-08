@@ -31,6 +31,7 @@
             
         }, options );
 
+	$(this).find('select').hide();
         this.append("<a class='"+settings.openmenu+"'>"+settings.openmenutext+"</a><div class='"+settings.menucontainer+"'></div> ");
             
         //get elements in dropdown
