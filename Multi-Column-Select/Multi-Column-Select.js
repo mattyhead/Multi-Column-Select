@@ -66,7 +66,7 @@
 			args.push($itemdata); 
                         
             	};
-                $($selector).find('select').val(args);		
+                $(this).parent().siblings('select').val(args);		
             };
             e.preventDefault();                        
         });
