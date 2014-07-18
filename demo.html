@@ -19,12 +19,32 @@
         <header>
             <h1>Multi-Column-Dropdown</h1>    
         </header>
-        
-    <form action="" method="GET">
+        <h2>Single Selection Multi-Column-Dropdown</h2>  
+    <form action="test.php" method="GET">
 
-    <div class="selectcontrol">
+        <div id="selectcontrol">
           <select name="car">
                 <option value="Audi">Audi</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="Chrysler">Chrysler</option>
+                <option value="Daihatsu">Daihatsu</option>
+                <option value="Ford">Ford</option>
+                <option value="GM">General Motors</option>
+                <option value="Honda">Honda</option>
+                <option value="Infiniti">Infiniti</option>
+     </select>
+    </div>
+        
+        <input type="submit" value="Submit" class="btn" />
+    </form>
+        
+        <h2>Multiple Selection Multi-Column-Dropdown</h2> 
+        
+        <form action="test.php" method="GET">
+
+    <div id="selectcontrolm">
+          <select name="cassr" multiple>
+                <option value="Audi">Audi22</option>
                 <option value="Bugatti">Bugatti</option>
                 <option value="Chrysler">Chrysler</option>
                 <option value="Daihatsu">Daihatsu</option>
@@ -39,15 +59,18 @@
     
     </div>
         
-
-        <script src="http://code.jquery.com/jquery-latest.min.js "></script> 
-
+    <!--[if lt IE 9]>  
+        <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <![endif]-->      
+    <!--[if gte IE 9]><!-->  
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js"></script> 
+    <!--<![endif]-->  
     
-    <script src="Multi-Column-Select/Multi-Column-Select.min.js"></script>
+    <script src="Multi-Column-Select/Multi-Column-Select.js"></script>
     
     <script>
      $(document).ready(function(){
-        $('.selectcontrol').MultiColumnSelect({
+        $('#selectcontrol').MultiColumnSelect({
             menuclass : 'columnselect', 
             openmenu : 'openmenubutton',
             openmenutext : 'Choose...',
@@ -55,11 +78,23 @@
             menuitem : 'menuitem',
             hideclass : 'hidden',
             openclass : 'open',
+            clearclass : 'clear',
             duration : 200,
-            showtext : true,
-            
-            onOpen: function(){};
-            onClose: function(){};
+           
+        });
+        
+          $('#selectcontrolm').MultiColumnSelect({
+            menuclass : 'columnselect', 
+            openmenu : 'openmenubutton',
+            openmenutext : 'Choose...',
+            menucontainer : 'menucontainer',
+            menuitem : 'menuitem',
+            hideclass : 'hidden',
+            openclass : 'open',
+            clearclass : 'clear',
+            duration : 200,
+            multiple: true
+           
         });
      });  
     </script>
