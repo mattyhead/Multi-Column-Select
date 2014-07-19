@@ -10,6 +10,12 @@
       
         <link rel="stylesheet" href="Multi-Column-Select/Multi-Column-Select.css">
         <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed|Ubuntu' rel='stylesheet' type='text/css'>
+
+        <style>
+            .clear{
+                margin-bottom: 10px;
+            }
+        </style>
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                 <option value="Infiniti">Infiniti</option>
      </select>
     </div>
-        
+        <div class="clear"></div>
         <input type="submit" value="Submit" class="btn" />
     </form>
         
@@ -42,7 +48,7 @@
         
         <form action="test.php" method="GET">
 
-    <div id="selectcontrolm">
+            <div id="selectcontrolm">
           <select name="cassr" multiple>
                 <option value="Audi">Audi22</option>
                 <option value="Bugatti">Bugatti</option>
@@ -54,6 +60,7 @@
                 <option value="Infiniti">Infiniti</option>
      </select>
     </div>
+            <div class="clear"></div>
         <input type="submit" value="Submit" class="btn" />
     </form>
     
@@ -70,7 +77,7 @@
     
     <script>
      $(document).ready(function(){
-           $('#selectcontrol').MultiColumnSelect({
+        $('#selectcontrol').MultiColumnSelect({
             menuclass : 'mcs', 
             openmenuClass : 'mcs-open',
             openmenuText : 'Choose an Option...',
@@ -103,6 +110,9 @@
             hideselect : false,
                      
         });
+        
+        // $('#selectcontrolm').MultiColumnSelectDestroy();
+       
      });  
     </script>
     
