@@ -117,8 +117,14 @@ $("#selectcontrol").MultiColumnSelect({
 
 });
 
+//Add item to selectbox
+$('#selectcontrol').MultiColumnSelectAdditem(OptionID,OptionValue,IDPrefix);
+
+
 //Destroy plugin
 $("#selectcontrol").MultiColumnSelectDestroy();
+
+
 
 
 ```
