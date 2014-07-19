@@ -61,15 +61,15 @@ Wrap the select control with a div and give that container an ID
 This is the HTML that the plugin produces (classed/ID's can be changed in the options):
 
 ```
-<div class="menucontainer">
-	<a id="msc-1" data="Audi" class="menuitem active">Audi</a>
-	<a id="msc-2" data="Bugatti" class="menuitem">Bugatti</a>
-	<a id="msc-3" data="Chrysler" class="menuitem active">Chrysler</a>
-	<a id="msc-4" data="Daihatsu" class="menuitem">Daihatsu</a>
-	<a id="msc-5" data="Ford" class="menuitem">Ford</a>
-	<a id="msc-6" data="GM" class="menuitem active">General Motors</a>
-	<a id="msc-7" data="Honda" class="menuitem">Honda</a>
-	<a id="msc-8" data="Infiniti" class="menuitem">Infiniti</a>
+<div class="mcs-container">
+	<a id="mcs-1" data="Audi" class="mcs-item active">Audi</a>
+	<a id="mcs-2" data="Bugatti" class="mcs-item">Bugatti</a>
+	<a id="mcs-3" data="Chrysler" class="mcs-item active">Chrysler</a>
+	<a id="mcs-4" data="Daihatsu" class="mcs-item">Daihatsu</a>
+	<a id="mcs-5" data="Ford" class="mcs-item">Ford</a>
+	<a id="mcs-6" data="GM" class="mcs-item active">General Motors</a>
+	<a id="mcs-7" data="Honda" class="mcs-item">Honda</a>
+	<a id="mcs-8" data="Infiniti" class="mcs-item">Infiniti</a>
 </div>
 
 ```
