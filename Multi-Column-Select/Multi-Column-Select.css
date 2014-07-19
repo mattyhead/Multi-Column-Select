@@ -5,7 +5,7 @@ html,body{
 }
 
 /*The container that holds the dropdown items*/
-.menucontainer{
+.mcs-container{
     	width:100%;
 	overflow:hidden;
         background:#222;
@@ -13,11 +13,12 @@ html,body{
         display:none;
         position: relative;
         padding:10px;
+        clear:both;
 }
 
 /*The menu items (options)*/
-.openmenubutton,
-.menuitem{
+.mcs-open,
+.mcs-item{
 	box-sizing: border-box;
 	background:#293b47;
 	color:#FFF;    
@@ -31,7 +32,7 @@ html,body{
         
 }
 
-.openmenubutton{
+.mcs-open{
     border: 0;
         text-align: left;
         padding: 0 10px 0 40px;
@@ -39,16 +40,16 @@ html,body{
         margin-top:20px;
 }
 
-.openmenubutton.open{
+.mcs-open.open{
     background:#ffffff;
     color:#111;
 }
-.openmenubutton.open:hover{
+.mcs-open.open:hover{
     background:#00ada9;
     color:#FFF;
 }
 
-.menuitem.active{
+.mcs-item.active{
 	background:#e8e8e8;
 	color:#222;
 	border:1px solid #222;
@@ -68,8 +69,8 @@ input[type=submit]{
     
 }
 
-.menuitem:hover,
-.openmenubutton:hover{
+.mcs-item:hover,
+.mcs-open:hover{
 background:#00ada9;
 cursor:pointer;
 }
@@ -111,12 +112,12 @@ h2{
     font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-.openmenubutton{
+.mcs-open{
         font-family: 'Ubuntu Condensed', sans-serif;
         font-size:1em;
 }           
 
-.menuitem{
+.mcs-item{
     font-family: 'Ubuntu', sans-serif;
     font-size:0.8em;
         -moz-transform: scale(0.95) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
@@ -135,17 +136,17 @@ h2{
         -webkit-box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
         box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
 }
-.menuitem:hover{
+.mcs-item:hover{
         -moz-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
         -webkit-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
         -o-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
         -ms-transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
         transform: scale(1) rotate(-3deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
 }
-.menuitem.active{
+.mcs-item.active{
     text-shadow: 0 0 0 #FFF;
 }
-.menuitem.active:hover{
+.mcs-item.active:hover{
     background:#FFF;
     text-shadow: 0 0 0 #FFF;
 }
