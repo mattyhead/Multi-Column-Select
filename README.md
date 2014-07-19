@@ -21,6 +21,14 @@ Include js plugin:
 
 </pre>
 
+<p>Updated 0.3 - Will not work with older versions</p>
+<ul>
+<li> Fixed issue with multiple selects </li>
+<li> Added Destroy method </li>
+<li> Remove clear class <li>
+<li> Removed/renamed some pluggin settings</li>
+</ul>
+
 <h2>Set up your HTML</h2>
 
 ```
