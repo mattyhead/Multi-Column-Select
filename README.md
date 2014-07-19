@@ -70,18 +70,20 @@ So feel free to style it however you like.
 The only styles to worry about are :
 
 ```
-.openmenubutton{
+//toggle open /close button
+.mcs-open {
 }
 
-.menucontainer{
+//container wrap for menu
+.mcs-container {
         overflow:hidden;            
         display:none;                    
 }
 
-.menuitem{
+//menu items / option replacements
+.mcs-item {
 }
 
-.hidden  // to hide the original select box
 
 ```
 
@@ -91,29 +93,26 @@ The only styles to worry about are :
 ```javascript
 $("#selectcontrol").MultiColumnSelect({
 
-            menuclass : 'multicolumnselect',     // class given to control
-            openmenu : 'openmenubutton',         // used to toggle menu open/closed
-            openmenutext : 'Choose...',   		 // Text for toggle menu button
-            menucontainer : 'menucontainer',     // Container Class
-            menuitem : 'menuitem',               // Item Class
-            idprefix : 'msc-',                   //Id Prefix of items eg msc-1,msc-2....
-	    showitemtext : true                  //Hide/Show text from options (if using images)
-            openclass : 'open',                  // Open Class
-            duration : 200,                       // Animation Duration
-            multiple: false,
-            duration : 200 
-                
-            onOpen : function(){};
-            onClose : function(){};
-            
-            //TODO
-            $.MulticolumnSelect.additem('ID','Value');
-            $.MulticolumnSelect.additem({{'ID','Value'},{'ID','Value'},{'ID','Value'}});
-            $.MulticolumnSelect.removeitem('ID');
-            $.MulticolumnSelect.destroy();
-            $.MulticolumnSelect.create({options});
+            multiple:           false,              // Single or Multiple Select- Default Single
+            useOptionText :     true,               // Use text from option. Use false if you plan to use images
+            hideselect :        true,               // Hide Original Select Control
+            openmenuClass :     'mcs-open',         // Toggle Open Button Class
+            openmenuText :      'Choose An Option', // Text for button
+            openclass :         'open',             // Class added to Toggle button on open
+            containerClass :    'mcs-container',    // Class of parent container
+            itemClass :         'mcs-item',         // Class of menu items
+            idprefix : null,                        // Assign as ID to items eg 'item-' = #item-1, #item-2, #item-3...
+            duration : 200,                         //Toggle Height duration
+            onOpen : function(){},
+            onClose : function(){},
+            onItemSelect : function(){}
 
 });
+
+//Destroy plugin
+$("#selectcontrol").MultiColumnSelectDestroy();
+
+
 ```
 
 
