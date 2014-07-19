@@ -5,7 +5,7 @@
 ![alt tag](http://www.djsmith.me/PLUGS/mcs/mcs.jpg)
 
 <h4>Jquery CSS Multi Column Select Box</h4>
-<p>A Simple plugin that will hide the Select control and then display a multicolumn dropdown (css)</p>
+<p>A Simple plugin (3Kb) that will hide the Select control and then display a multicolumn dropdown (css)</p>
 <p>Uses the original form control so will work if JS is not enabled and the form can be processed as normal</p>
 <h4><a href="http://djsmithme.github.io/Multi-Column-Select/">demo</a></h4>
 
