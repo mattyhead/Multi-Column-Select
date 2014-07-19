@@ -1,5 +1,5 @@
 /*
-* jQuery Multi-Column-Select v0.1
+* jQuery Multi-Column-Select v0.3
 *
 * Copyright (c) 2014 DanSmith
 *
