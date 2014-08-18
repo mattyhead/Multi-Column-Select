@@ -26,7 +26,7 @@ Include js plugin:
 <li> Fixed issue with multiple selects </li>
 <li> Added Destroy method </li>
 <li> Remove clear class </li>
-<li> Removed/renamed some pluggin settings</li>
+<li> Removed/renamed some plugin settings</li>
 </ul>
 
 <h2>Set up your HTML</h2>
