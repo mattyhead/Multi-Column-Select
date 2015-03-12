@@ -104,14 +104,14 @@
 
         init_msc(settings.openmenuClass, settings.openmenuText, settings.containerClass, settings.multiple, this); //create the wrapper
 
-        this.find('select option').each(function (e, v) //get elements in dropdown
+        this.find('select option').each(function () //get elements in dropdown
         {
             generateitems(this, settings.useOptionText, settings.idprefix, settings.itemClass, settings.containerClass);
         });
 
         this.on('click', '.' + settings.itemClass, function (e)    //on menu item click
         {
-            $select = $(this).parent().prev().prev();
+            var $select = $(this).parent().prev().prev();
             if ($select.val() !== null) {
                 args = $select.val();
             }
@@ -124,7 +124,7 @@
 
         this.find('.' + settings.openmenuClass).on('click', function (e)
         {
-            $menucontainer = $(this).next();
+            var $menucontainer = $(this).next();
             if ($(this).hasClass(settings.openclass)) {
                 $(this).removeClass(settings.openclass);
                 $menucontainer.slideToggle("slow", function () {
@@ -154,20 +154,20 @@
     };
 
     $.fn.MultiColumnSelectAdditem = function (itemvalue, itemtext, idprefix) {
-        $mcs = this.find('select');
-        $count = this.find('select options').size();
+        var $mcs = this.find('select');
+        var $count = this.find('select options').size();
         $mcs.append($('<option/>', {value: itemvalue, text: itemtext}));
-        $toggle = $mcs.next();
+        var $toggle = $mcs.next();
         if ($toggle.hasClass('mcs')) {
             //Found init plugin
-            $container = $toggle.next();
-            $menuitem = $container.children();
-            $menuitemClass = $menuitem.attr('class');
+            var $container = $toggle.next();
+            var $menuitem = $container.children();
+            var $menuitemClass = $menuitem.attr('class');
             var idtemplate = "";
             if (typeof (idprefix) !== 'undefined') {
                 idtemplate = "' id='" + idprefix + $count;
             }
-            $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue + idtemplate + "'>" + itemtext + "</a>";
+            var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue + idtemplate + "'>" + itemtext + "</a>";
             $container.append($newitem);
         }
     };
