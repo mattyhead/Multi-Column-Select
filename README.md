@@ -1,6 +1,6 @@
 <h1>Multi-Column-Select</h1>
-
-
+[![Code Climate](https://codeclimate.com/repos/54ff00b2695680505900054a/badges/df72ceaf9494c4af73ca/gpa.svg)](https://codeclimate.com/repos/54ff00b2695680505900054a/feed)
+[![Codacy Badge](https://www.codacy.com/project/badge/5f56effdd83b494ca6698216704d1d88)](https://www.codacy.com/public/dansmith/Multi-Column-Select)
 
 ![alt tag](http://www.djsmith.me/PLUGS/mcs/mcs.jpg)
 
