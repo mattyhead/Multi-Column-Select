@@ -9,9 +9,9 @@
 (function ($) {
 
 //private functions
-    itemclick = function (selector, itemClass, args) {
-        $itemdata = $(selector).attr('data');
-        $menucontainer = $(selector).parent();
+    var itemclick = function (selector, itemClass, args) {
+        var $itemdata = $(selector).attr('data');
+        var $menucontainer = $(selector).parent();
         if ($menucontainer.hasClass('Multi')) {
             if ($(selector).hasClass('active')) {
                 //already selected, unselect it
@@ -33,9 +33,9 @@
 
     };
 
-    init_msc = function (openmenu, opentext, container, multi, append) {
-        toggle = document.createElement('a');
-        mcscontainer = document.createElement('div');
+    var init_msc = function (openmenu, opentext, container, multi, append) {
+        var toggle = document.createElement('a');
+        var mcscontainer = document.createElement('div');
         $(toggle).addClass(openmenu).addClass('mcs').html(opentext).appendTo(append);
         if (multi === true) {
             $(mcscontainer).addClass('Multi');
@@ -43,10 +43,11 @@
         $(mcscontainer).addClass(container).appendTo(append);
     };
 
-    generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
+    var generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
         var itemtemplate;
+        var $optioncount;
         var idtemplate = "";
-        $menucontainer = $(selector).parent();
+        var $menucontainer = $(selector).parent();
         $optioncount += 1;
         var settext = '';
         if (useOptionText === true) {
@@ -60,8 +61,8 @@
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
     };
 
-    destroymsc = function (selector) {
-        $mcs = selector.find('select');
+    var destroymsc = function (selector) {
+        var $mcs = selector.find('select');
         $mcs.show();            // Shows the Select control if it was hidden;
         if ($mcs.next().hasClass('mcs'))
         {
@@ -170,6 +171,4 @@
             $container.append($newitem);
         }
     };
-
-
 }(jQuery));
