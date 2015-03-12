@@ -1,8 +1,6 @@
 /*
- * jQuery Multi-Column-Select v0.3
- *
+ * jQuery Multi-Column-Select v0.5
  * Copyright (c) 2014 DanSmith
- *
  * Licensed under MIT
  *
  */
