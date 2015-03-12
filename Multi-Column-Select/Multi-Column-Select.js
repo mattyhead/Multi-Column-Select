@@ -8,8 +8,72 @@
  */
 (function ($) {
 
+//private functions
+    itemclick = function (selector, itemClass, args) {
+        $itemdata = $(selector).attr('data');
+        $menucontainer = $(selector).parent();
+        if ($menucontainer.hasClass('Multi')) {
+            if ($(selector).hasClass('active')) {
+                //already selected, unselect it
+                $(selector).removeClass('active');
+                var removeItem = $itemdata; //ID to be removed
+                args.splice($.inArray(removeItem, args), 1); //Look up at the ID and remove it
+            } else {
+                $(selector).addClass('active');
+                args.push($itemdata);
+            }
+            $menucontainer.siblings('select').val(args);
+        }
+
+        if (!$menucontainer.hasClass('Multi')) {
+            $menucontainer.siblings('select').val($itemdata); //bind form value
+            $(selector).siblings('a.' + itemClass).removeClass('active'); //remove all active states
+            $(selector).addClass('active'); //add new active state to clicked item
+        }
+
+    };
+
+    init_msc = function (openmenu, opentext, container, multi, append) {
+        toggle = document.createElement('a');
+        mcscontainer = document.createElement('div');
+        $(toggle).addClass(openmenu).addClass('mcs').html(opentext).appendTo(append);
+        if (multi === true) {
+            $(mcscontainer).addClass('Multi');
+        }
+        $(mcscontainer).addClass(container).appendTo(append);
+    };
+
+    generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
+        var itemtemplate;
+        var idtemplate = "";
+        $menucontainer = $(selector).parent();
+        $optioncount += 1;
+        var settext = '';
+        if (useOptionText === true) {
+            settext = $(selector).text();
+        }
+
+        if (idprefix !== null) {
+            idtemplate = "' id='" + idprefix + $optioncount;
+        }
+        itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
+        $menucontainer.siblings('.' + containerClass).append(itemtemplate);
+    };
+
+    destroymsc = function (selector) {
+        $mcs = selector.find('select');
+        $mcs.show();            // Shows the Select control if it was hidden;
+        if ($mcs.next().hasClass('mcs'))
+        {
+            $mcs.next().remove();   // Remove the generated open/close toggle
+            $mcs.next().remove();   // Remove the generated items
+        }
+    };
+
     $.fn.MultiColumnSelect = function (options) {
         var args = [];
+        var $optioncount;
+
         $optioncount = 0;
 
         var settings = $.extend({
@@ -99,73 +163,13 @@
             $menuitem = $container.children();
             $menuitemClass = $menuitem.attr('class');
             var idtemplate = "";
-            if (typeof (idprefix) !== 'undefined')
+            if (typeof (idprefix) !== 'undefined') {
                 idtemplate = "' id='" + idprefix + $count;
+            }
             $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue + idtemplate + "'>" + itemtext + "</a>";
             $container.append($newitem);
         }
     };
 
-    //private functions
-    itemclick = function (selector, itemClass, args) {
-        $itemdata = $(selector).attr('data');
-        $menucontainer = $(selector).parent();
-        if ($menucontainer.hasClass('Multi')) {
-            if ($(selector).hasClass('active')) {
-                //already selected, unselect it
-                $(selector).removeClass('active');
-                var removeItem = $itemdata; //ID to be removed
-                args.splice($.inArray(removeItem, args), 1); //Look up at the ID and remove it
-            } else {
-                $(selector).addClass('active');
-                args.push($itemdata);
-            }
-            ;
-            $menucontainer.siblings('select').val(args);
-        }
 
-        if (!$menucontainer.hasClass('Multi')) {
-            $menucontainer.siblings('select').val($itemdata); //bind form value
-            $(selector).siblings('a.' + itemClass).removeClass('active'); //remove all active states
-            $(selector).addClass('active'); //add new active state to clicked item
-        }
-
-    };
-
-    init_msc = function (openmenu, opentext, container, multi, append) {
-        toggle = document.createElement('a');
-        mcscontainer = document.createElement('div');
-        $(toggle).addClass(openmenu).addClass('mcs').html(opentext).appendTo(append);
-        if (multi === true) {
-            $(mcscontainer).addClass('Multi');
-        }
-        $(mcscontainer).addClass(container).appendTo(append);
-    };
-
-    generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
-        var itemtemplate;
-        var idtemplate = "";
-        $menucontainer = $(selector).parent();
-        $optioncount += 1;
-        var settext = '';
-        if (useOptionText === true) {
-            settext = $(selector).text();
-        }
-
-        if (idprefix !== null) {
-            idtemplate = "' id='" + idprefix + $optioncount;
-        }
-        itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
-        $menucontainer.siblings('.' + containerClass).append(itemtemplate);
-    };
-
-    destroymsc = function (selector) {
-        $mcs = selector.find('select');
-        $mcs.show();            // Shows the Select control if it was hidden;
-        if ($mcs.next().hasClass('mcs'))
-        {
-            $mcs.next().remove();   // Remove the generated open/close toggle
-            $mcs.next().remove();   // Remove the generated items
-        }
-    };
 }(jQuery));
