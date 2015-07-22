@@ -71,6 +71,7 @@
 
     $.fn.MultiColumnSelect = function (options) {
         var args = [];
+        var selected = [];
         var $optioncount;
 
         $optioncount = 0;
@@ -104,7 +105,25 @@
 
         this.find('select option').each(function () //get elements in dropdown
         {
-            generateitems(this, settings.useOptionText, settings.idprefix, settings.itemClass, settings.containerClass);
+
+            if ($(this).attr('selected')){
+
+                generateitems(this, settings.useOptionText, settings.idprefix, [settings.itemClass + ' selected'], settings.containerClass);
+
+
+                var $select = $('.selected').parent().prev().prev();
+                if ($select.val() !== null) {
+                    args = $select.val();
+                }
+                itemclick($('.selected'), settings.itemClass, args);
+                $('.selected').toggleClass('selected');
+
+
+
+            }else{
+                generateitems(this, settings.useOptionText, settings.idprefix, settings.itemClass, settings.containerClass);
+
+            }
         });
 
         this.on('click', '.' + settings.itemClass, function (e)    //on menu item click
@@ -151,7 +170,8 @@
         destroymsc(this);
     };
 
-    $.fn.MultiColumnSelectAdditem = function (itemvalue, itemtext, idprefix) {
+    $.fn.MultiColumnSelectAddItem = function (itemvalue, itemtext, idprefix) {
+
         var $mcs = this.find('select');
         var $count = this.find('select options').size();
         $mcs.append($('<option/>', {value: itemvalue, text: itemtext}));
@@ -161,6 +181,8 @@
             var $container = $toggle.next();
             var $menuitem = $container.children();
             var $menuitemClass = $menuitem.attr('class');
+            $menuitemClass = $menuitemClass.substring(0, $menuitemClass.indexOf(' '));
+
             var idtemplate = "";
             if (typeof (idprefix) !== 'undefined') {
                 idtemplate = "' id='" + idprefix + $count;
