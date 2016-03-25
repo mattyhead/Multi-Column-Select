@@ -53,7 +53,7 @@
         }
 
         if (idprefix !== null) {
-            idtemplate = "' id='" + idprefix + $optioncount;
+            idtemplate = "' id='" + idprefix + $optioncount.toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
