@@ -185,9 +185,9 @@
 
             var idtemplate = "";
             if (typeof (idprefix) !== 'undefined') {
-                idtemplate = "' id='" + idprefix + $count;
+                idtemplate = "' id='" + idprefix + '' +$count;
             }
-            var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue + idtemplate + "'>" + itemtext + "</a>";
+            var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue +''+ idtemplate + "'>" + itemtext + "</a>";
             $container.append($newitem);
         }
     };
