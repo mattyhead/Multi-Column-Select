@@ -53,7 +53,7 @@
         if (useOptionText === true) {
             settext = $(selector).text();
         }
-        if (idprefix != null) { // '' should be regarded as nullish
+        if (idprefix.length()) { // '' should be regarded as nullish
             idtemplate = "' id='" + idprefix + (optioncount).toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
