@@ -4,10 +4,10 @@
  * Licensed under MIT
  *
  */
-(function ($) {
+(function($) {
 
-//private functions
-    var itemclick = function (selector, itemClass, args) {
+    //private functions
+    var itemclick = function(selector, itemClass, args) {
         var $itemdata = $(selector).attr('data');
         var $menucontainer = $(selector).parent();
         if ($menucontainer.hasClass('Multi')) {
@@ -31,7 +31,7 @@
 
     };
 
-    var init_msc = function (openmenu, opentext, container, multi, append) {
+    var init_msc = function(openmenu, opentext, container, multi, append) {
         var toggle = document.createElement('a');
         var mcscontainer = document.createElement('div');
         $(toggle).addClass(openmenu).addClass('mcs').html(opentext).appendTo(append);
@@ -41,7 +41,7 @@
         $(mcscontainer).addClass(container).appendTo(append);
     };
 
-    var generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
+    var generateitems = function(selector, useOptionText, idprefix, itemClass, containerClass) {
         var itemtemplate;
         var $optioncount = 0;
         var idtemplate = "";
@@ -51,7 +51,6 @@
         if (useOptionText === true) {
             settext = $(selector).text();
         }
-console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
         if (idprefix !== null) {
             idtemplate = "' id='" + idprefix + ($optioncount).toString();
         }
@@ -59,17 +58,16 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
     };
 
-    var destroymsc = function (selector) {
+    var destroymsc = function(selector) {
         var $mcs = selector.find('select');
-        $mcs.show();            // Shows the Select control if it was hidden;
-        if ($mcs.next().hasClass('mcs'))
-        {
-            $mcs.next().remove();   // Remove the generated open/close toggle
-            $mcs.next().remove();   // Remove the generated items
+        $mcs.show(); // Shows the Select control if it was hidden;
+        if ($mcs.next().hasClass('mcs')) {
+            $mcs.next().remove(); // Remove the generated open/close toggle
+            $mcs.next().remove(); // Remove the generated items
         }
     };
 
-    $.fn.MultiColumnSelect = function (options) {
+    $.fn.MultiColumnSelect = function(options) {
         var args = [];
         var selected = [];
         var $optioncount;
@@ -94,8 +92,7 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
 
         this.find('select').val(0);
 
-        if (settings.hideselect === true)
-        {
+        if (settings.hideselect === true) {
             this.find('select').hide();
         } else {
             this.find('select').show();
@@ -103,48 +100,47 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
 
         init_msc(settings.openmenuClass, settings.openmenuText, settings.containerClass, settings.multiple, this); //create the wrapper
 
-        this.find('select option').each(function () //get elements in dropdown
-        {
+        this.find('select option').each(function() //get elements in dropdown
+            {
 
-            if ($(this).attr('selected')){
+                if ($(this).attr('selected')) {
 
-                generateitems(this, settings.useOptionText, settings.idprefix, [settings.itemClass + ' selected'], settings.containerClass);
+                    generateitems(this, settings.useOptionText, settings.idprefix, [settings.itemClass + ' selected'], settings.containerClass);
 
 
-                var $select = $('.selected').parent().prev().prev();
+                    var $select = $('.selected').parent().prev().prev();
+                    if ($select.val() !== null) {
+                        args = $select.val();
+                    }
+                    itemclick($('.selected'), settings.itemClass, args);
+                    $('.selected').toggleClass('selected');
+
+
+
+                } else {
+                    generateitems(this, settings.useOptionText, settings.idprefix, settings.itemClass, settings.containerClass);
+
+                }
+            });
+
+        this.on('click', '.' + settings.itemClass, function(e) //on menu item click
+            {
+                var $select = $(this).parent().prev().prev();
                 if ($select.val() !== null) {
                     args = $select.val();
                 }
-                itemclick($('.selected'), settings.itemClass, args);
-                $('.selected').toggleClass('selected');
+                itemclick(this, settings.itemClass, args);
+                if ($.isFunction(settings.onItemSelect)) {
+                    settings.onItemSelect.call(this); // Select item :: callback
+                }
+                e.preventDefault();
+            });
 
-
-
-            }else{
-                generateitems(this, settings.useOptionText, settings.idprefix, settings.itemClass, settings.containerClass);
-
-            }
-        });
-
-        this.on('click', '.' + settings.itemClass, function (e)    //on menu item click
-        {
-            var $select = $(this).parent().prev().prev();
-            if ($select.val() !== null) {
-                args = $select.val();
-            }
-            itemclick(this, settings.itemClass, args);
-            if ($.isFunction(settings.onItemSelect)) {
-                settings.onItemSelect.call(this);// Select item :: callback
-            }
-            e.preventDefault();
-        });
-
-        this.find('.' + settings.openmenuClass).on('click', function (e)
-        {
+        this.find('.' + settings.openmenuClass).on('click', function(e) {
             var $menucontainer = $(this).next();
             if ($(this).hasClass(settings.openclass)) {
                 $(this).removeClass(settings.openclass);
-                $menucontainer.slideToggle("slow", function () {
+                $menucontainer.slideToggle("slow", function() {
                     // Close Animation complete :: callback
                     if ($.isFunction(settings.onClose)) {
                         settings.onClose.call(this);
@@ -153,7 +149,7 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
             } else {
                 $(this).addClass(settings.openclass);
                 //Set the height of the container
-                $menucontainer.slideToggle("slow", function () {
+                $menucontainer.slideToggle("slow", function() {
                     // Open Animation complete :: callback
                     if ($.isFunction(settings.onOpen)) {
                         settings.onOpen.call(this);
@@ -166,15 +162,18 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
     };
 
     //public functions
-    $.fn.MultiColumnSelectDestroy = function () {
+    $.fn.MultiColumnSelectDestroy = function() {
         destroymsc(this);
     };
 
-    $.fn.MultiColumnSelectAddItem = function (itemvalue, itemtext, idprefix) {
+    $.fn.MultiColumnSelectAddItem = function(itemvalue, itemtext, idprefix) {
 
         var $mcs = this.find('select');
         var $count = this.find('select options').size();
-        $mcs.append($('<option/>', {value: itemvalue, text: itemtext}));
+        $mcs.append($('<option/>', {
+            value: itemvalue,
+            text: itemtext
+        }));
         var $toggle = $mcs.next();
         if ($toggle.hasClass('mcs')) {
             //Found init plugin
@@ -184,8 +183,8 @@ console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
             $menuitemClass = $menuitemClass.substring(0, $menuitemClass.indexOf(' '));
 
             var idtemplate = "";
-            if (typeof (idprefix) !== 'undefined') {
-                idtemplate = "' id='" + idprefix +$count.toString();
+            if (typeof(idprefix) !== 'undefined') {
+                idtemplate = "' id='" + idprefix + $count.toString();
             }
             var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue.toString() + idtemplate + "'>" + itemtext + "</a>";
             $container.append($newitem);
