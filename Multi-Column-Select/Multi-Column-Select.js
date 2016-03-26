@@ -42,13 +42,12 @@
         var itemtemplate;
         var idtemplate = "";
         var $menucontainer = $(selector).parent();
-        optioncount++;
         var settext = '';
         if (useOptionText === true) {
             settext = $(selector).text();
         }console.log(idprefix);
         if (typeof(idprefix) !== 'undefined' && idprefix.length) { // '' should be regarded as nullish
-            idtemplate = "' id='" + idprefix + optioncount.toString();
+            idtemplate = "' id='" + idprefix + (optioncount++).toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
@@ -157,7 +156,7 @@
             $menuitemClass = $menuitemClass.substring(0, $menuitemClass.indexOf(' '));
             var idtemplate = "";
             if (typeof(idprefix) !== 'undefined' && idprefix.length) {
-                idtemplate = "' id='" + idprefix + $count.toString();
+                idtemplate = "' id='" + idprefix + (optioncount++).toString();
             }
             var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue.toString() + idtemplate + "'>" + itemtext + "</a>";
             $container.append($newitem);
