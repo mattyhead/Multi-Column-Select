@@ -6,8 +6,11 @@
  */
 (function($) {
 
+    //module varables
+    optioncount = 0,
+
     //private functions
-    var itemclick = function(selector, itemClass, args) {
+    itemclick = function(selector, itemClass, args) {
         var $itemdata = $(selector).attr('data');
         var $menucontainer = $(selector).parent();
         if ($menucontainer.hasClass('Multi')) {
@@ -29,9 +32,9 @@
             $(selector).addClass('active'); //add new active state to clicked item
         }
 
-    };
+    },
 
-    var init_msc = function(openmenu, opentext, container, multi, append) {
+    init_msc = function(openmenu, opentext, container, multi, append) {
         var toggle = document.createElement('a');
         var mcscontainer = document.createElement('div');
         $(toggle).addClass(openmenu).addClass('mcs').html(opentext).appendTo(append);
@@ -39,26 +42,25 @@
             $(mcscontainer).addClass('Multi');
         }
         $(mcscontainer).addClass(container).appendTo(append);
-    };
+    },
 
-    var generateitems = function(selector, useOptionText, idprefix, itemClass, containerClass) {
+    generateitems = function(selector, useOptionText, idprefix, itemClass, containerClass) {
         var itemtemplate;
-        var $optioncount = 0;
         var idtemplate = "";
         var $menucontainer = $(selector).parent();
-        $optioncount++;
+        optioncount++;
         var settext = '';
         if (useOptionText === true) {
             settext = $(selector).text();
         }
         if (idprefix !== null) {
-            idtemplate = "' id='" + idprefix + ($optioncount).toString();
+            idtemplate = "' id='" + idprefix + (optioncount).toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
-    };
+    },
 
-    var destroymsc = function(selector) {
+    destroymsc = function(selector) {
         var $mcs = selector.find('select');
         $mcs.show(); // Shows the Select control if it was hidden;
         if ($mcs.next().hasClass('mcs')) {
