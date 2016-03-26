@@ -6,7 +6,7 @@
  */
 (function($) {
     //module varables
-    optioncount = 0,
+    optioncount = 1,
     //private functions
     itemclick = function(selector, itemClass, args) {
         var $itemdata = $(selector).attr('data');
