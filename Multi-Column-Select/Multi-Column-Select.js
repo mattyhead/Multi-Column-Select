@@ -51,7 +51,7 @@
         if (useOptionText === true) {
             settext = $(selector).text();
         }
-
+console.log($optioncount, idprefix, idprefix + ($optioncount).toString());
         if (idprefix !== null) {
             idtemplate = "' id='" + idprefix + ($optioncount).toString();
         }
