@@ -46,7 +46,7 @@
         var settext = '';
         if (useOptionText === true) {
             settext = $(selector).text();
-        }
+        }console.log(idprefix);
         if (typeof(idprefix) !== 'undefined' && idprefix.length()) { // '' should be regarded as nullish
             idtemplate = "' id='" + idprefix + optioncount.toString();
         }
