@@ -43,17 +43,17 @@
 
     var generateitems = function (selector, useOptionText, idprefix, itemClass, containerClass) {
         var itemtemplate;
-        var $optioncount;
+        var $optioncount = 0;
         var idtemplate = "";
         var $menucontainer = $(selector).parent();
-        $optioncount += 1;
+        $optioncount++;
         var settext = '';
         if (useOptionText === true) {
             settext = $(selector).text();
         }
 
         if (idprefix !== null) {
-            idtemplate = "' id='" + idprefix + $optioncount.toString();
+            idtemplate = "' id='" + idprefix + ($optioncount).toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
         $menucontainer.siblings('.' + containerClass).append(itemtemplate);
