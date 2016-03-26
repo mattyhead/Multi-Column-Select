@@ -47,7 +47,7 @@
         if (useOptionText === true) {
             settext = $(selector).text();
         }console.log(idprefix);
-        if (typeof(idprefix) !== 'undefined' && idprefix.length()) { // '' should be regarded as nullish
+        if (typeof(idprefix) !== 'undefined' && idprefix.length) { // '' should be regarded as nullish
             idtemplate = "' id='" + idprefix + optioncount.toString();
         }
         itemtemplate = "<a class='" + itemClass + "' data='" + $(selector).attr('value') + idtemplate + "'>" + settext + "</a>";
@@ -156,7 +156,7 @@
             var $menuitemClass = $menuitem.attr('class');
             $menuitemClass = $menuitemClass.substring(0, $menuitemClass.indexOf(' '));
             var idtemplate = "";
-            if (typeof(idprefix) !== 'undefined' && idprefix.length()) {
+            if (typeof(idprefix) !== 'undefined' && idprefix.length) {
                 idtemplate = "' id='" + idprefix + $count.toString();
             }
             var $newitem = "<a class='" + $menuitemClass + " additem' data='" + itemvalue.toString() + idtemplate + "'>" + itemtext + "</a>";
