@@ -45,7 +45,7 @@
         var settext = '';
         if (useOptionText === true) {
             settext = $(selector).text();
-        }console.log(idprefix);
+        }
         if (typeof(idprefix) !== 'undefined' && idprefix.length) { // '' should be regarded as nullish
             idtemplate = "' id='" + idprefix + (optioncount++).toString();
         }
@@ -141,7 +141,6 @@
         destroymsc(this);
     };
     $.fn.MultiColumnSelectAddItem = function(itemvalue, itemtext, idprefix) {
-        console.log($.fn.MultiColumnSelect.settings);
         var $mcs = this.find('select');
         var $count = this.find('select options').size();
         $mcs.append($('<option/>', {
