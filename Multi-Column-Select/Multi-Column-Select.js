@@ -141,6 +141,7 @@
         destroymsc(this);
     };
     $.fn.MultiColumnSelectAddItem = function(itemvalue, itemtext, idprefix) {
+        console.log($.fn.MultiColumnSelect.settings);
         var $mcs = this.find('select');
         var $count = this.find('select options').size();
         $mcs.append($('<option/>', {
