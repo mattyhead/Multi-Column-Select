@@ -61,6 +61,7 @@
         }
     };
     $.fn.MultiColumnSelect = function(options) {
+        console.log($(this));
         var args = [],
         selected = [],
         //optioncount = 0,
